@@ -1,3 +1,6 @@
+import csv
+
+
 class Book:
     #Инициализирование класса "Book"
     def __init__(self, isbn, name, autor, year, genre, status):
@@ -11,3 +14,16 @@ class Book:
     def __str__(self):
         s = f'[ISBN: {self.isbn}, Name: {self.name}, Autor: {self.autor}, Year of publication: {self.year}, Genre: {self.genre}, Status: {self.status}]'
         return s
+    
+    @classmethod
+    def from_csv(cls, arr):
+        return cls(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5])
+    
+if __name__ == '__main__':
+    with open('books.csv', 'r') as csvfile:
+        reader = csv.reader(csvfile, delimiter=',')
+        next(reader)
+        for row in reader:
+            book = Book.from_csv(row)
+            print(book)
+

@@ -1,3 +1,4 @@
+import csv
 from book import Book
 from singly_linked_list import SinglyLinkedList
 
@@ -13,7 +14,7 @@ class LibrarySystem:
         '''
         Придумать хорошую хэш - функцию
         '''
-        return int(isbn) % self.size
+        return int(isbn[-1])
     
     #Добавление книги
     def add(self, book):
@@ -60,6 +61,14 @@ class LibrarySystem:
             self.table[ind].find(isbn).status = "в наличии"
         else:
             self.table[ind].find(isbn).status = "выдана"
+    
+    def from_csv(self, csv_file):
+        with open(csv_file, 'r') as csvfile:
+            reader = csv.reader(csvfile, delimiter=',')
+            next(reader) #Пропускаем строчку заголовков
+            for arr_book in reader:
+                new_book = Book.from_csv(arr_book)
+                self.add(new_book)
 
 
             
@@ -67,7 +76,9 @@ class LibrarySystem:
 
 if __name__ == '__main__':
     LS = LibrarySystem(10)
-    sll = SinglyLinkedList()
+
+    LS.from_csv('books.csv')
+    LS.show()
 
     '''
     Тест на работу цепочек при коллизиях
@@ -75,13 +86,23 @@ if __name__ == '__main__':
      \/
     '''
 
+    '''
+    sll = SinglyLinkedList()
     collisia_book = Book('325', 'd', 'd', '4', 'd', 'd')
     sll.add_to_start(collisia_book)
     LS.table[1] = sll
-    
+    '''
+
+    '''
     book1 = Book('123456789012', 'Хентай девочки маленькие', 'Сергей Потапов', '2007', 'Хорор', 'в наличии')
     book2 = Book('929140219324', 'Камасутра', 'Ирина Петрова', '2011', 'Комедия', 'в наличии')
     book3 = Book('342982381031', 'Путь к успеху', 'Николай Соболев', '2001', 'Триллер', 'выдана')
+    
+    Придумал и написал Коля
+     ||
+     ||
+     \/
+    book4 = Book('124141414441', 'Альтушки с пятым размером сисечек','Николай Бабушкин','5269', 'Биография','в налачии')
     LS.add(book1)
     LS.add(book2)
     LS.add(book3)
@@ -98,4 +119,5 @@ if __name__ == '__main__':
     print(LS.get('929140219324'))
     LS.change_status('929140219324', False)
     print(LS.get('929140219324'))
+    '''
 
