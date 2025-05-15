@@ -30,7 +30,7 @@ class LibrarySystem:
     def remove(self, isbn):
         ind = self.hash_func(isbn)
         if self.table[ind] == None:
-            raise ValueError('Empty value')
+            return -1
         elif self.table[ind].length > 1:
             self.table[ind].remove(isbn)
         else:
@@ -40,17 +40,24 @@ class LibrarySystem:
     def get(self, isbn):
         ind = self.hash_func(isbn)
         if self.table[ind] == None:
-            raise ValueError('Empty data')
+            return -1
         else:
             return self.table[ind].find(isbn)
     
-    #Вывод всей Хэш-Таблицы (Library System)
-    def show(self):
+    
+    #Вывод всей Хэш-Таблицы(Library System) для тестов
+    def test_show(self):
         for i in range(self.size):
             if self.table[i] == None:
                 print(f'{i} : {self.table[i]}')
             else:
                 print(f'{i} : {self.table[i].show()}')
+    
+    #Вывод всех книг в Хэш-Таблице(Library System)
+    def show(self):
+        for i in range(self.size):
+            if self.table[i] != None:
+                print(f'{self.table[i].show()}')
     
     #Изменение статуса книги по ее "ISBN"
     def change_status(self, isbn, is_availible):
