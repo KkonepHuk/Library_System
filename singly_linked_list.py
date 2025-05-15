@@ -59,9 +59,17 @@ class SinglyLinkedList:
             self.length -= 1
     
     
-    #Вывод списка на экран
-    def show(self):
+    #Наглядный вывод списка на экран для тестов
+    def test_show(self):
         return self.__str__()
+    
+    def show(self):
+        current = self.head
+        s = ''
+        while current:
+            s += f'{str(current.book)}\n'
+            current = current.next
+        return s[:-2]
 
     #Поиск в списке значения по ключу
     def find(self, isbn):
