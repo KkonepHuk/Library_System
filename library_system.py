@@ -68,7 +68,23 @@ class LibrarySystem:
             self.table[ind].find(isbn).status = "в наличии"
         else:
             self.table[ind].find(isbn).status = "выдана"
+
+    #Преобразует Хэш-Таблицу(Library System) в двумернай массив
+    def to_arr(self):
+        data = [['ISBN','Name','Author','Year','Genre','Status']]
+        for i in range(self.size):
+            if self.table[i] != None:
+                data.extend(self.table[i].to_arr())
+        return data
     
+    #Сохранение Хэш-Таблицы(Library System) в csv файл
+    def save(self, csv_file):
+        data = self.to_arr()
+        with open(csv_file, 'w') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerows(data)
+    
+    #Формирование Library System из csv файла
     def from_csv(self, csv_file):
         with open(csv_file, 'r') as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
@@ -125,4 +141,7 @@ if __name__ == '__main__':
     print(LS.get('929140219324'))
     LS.change_status('929140219324', False)
     print(LS.get('929140219324'))
+    print()
+    LS.show()
+    print(LS.to_arr())
 

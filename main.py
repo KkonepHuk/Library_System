@@ -23,19 +23,22 @@ def do_action(command):
         print('Список доступных книг:\n')
         return LS.show()
     elif command == '2':
-        isbn = input('Введите ISBN книги искомой книги: ') #нужно написать функцию для проверки валидности ISBN
+        isbn = input('Введите ISBN искомой книги: ') #нужно написать функцию для проверки валидности ISBN
         book = LS.get(isbn)
         if book == -1 or book == None:
             print('Книги с данным ISBN не существует')
         else:
             print(book)
     elif command == '3':
-        isbn = input('Введите ISBN книги искомой книги: ') #нужно написать функцию для проверки валидности ISBN
+        isbn = input('Введите ISBN книги, которую хотите удалить: ') #нужно написать функцию для проверки валидности ISBN
         book = LS.get(isbn)
         if book == -1 or book == None:
             print('Книги с данным ISBN не существует')
         else:
-            pass # функция удаления из csv файла
+            LS.remove(isbn)
+            print('Книга успешно удалена!')
+    elif command == '5':
+        LS.save(CSV_FILE)
 
 def get_input():
     num = input().strip()
@@ -63,6 +66,9 @@ def main():
 
 
 if __name__ == '__main__':
-    LS = LibrarySystem(10)
-    LS.from_csv('books.csv')
+    SIZE = 10 #Размер Хэш-Таблицы (Library System)
+    CSV_FILE = 'books.csv' #CSV файл с базой данных книг
+
+    LS = LibrarySystem(SIZE)
+    LS.from_csv(CSV_FILE)
     main()

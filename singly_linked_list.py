@@ -72,6 +72,16 @@ class SinglyLinkedList:
             current = current.next
         return None
     
+    #Односвязный список в дыумерный массив
+    def to_arr(self):
+        data = []
+        current = self.head
+        while current:
+            data.append(current.book.to_arr())
+            current = current.next
+        return data
+
+    
     
 if __name__ == '__main__':
     sll = SinglyLinkedList()
