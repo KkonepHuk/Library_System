@@ -13,10 +13,11 @@ def show_information():
     s = 'Выберите одно из действий:\n'
     s += '1) Посмотреть текущие книги\n'
     s += '2) Найти книгу по её ISBN\n'
-    s += '3) Удалить книгу\n'
-    s += '4) Добавить книгу\n'
-    s += '5) Сохранить изменения\n'
-    s += '6) Выход\n'
+    s += '3) Изменить статус книги\n'
+    s += '4) Удалить книгу\n'
+    s += '5) Добавить книгу\n'
+    s += '6) Сохранить изменения\n'
+    s += '7) Выход\n'
     print(s)
 
 def do_action(command):
@@ -31,26 +32,34 @@ def do_action(command):
         else:
             print(book)
     elif command == '3':
+        isbn = input('Введите ISBN нужной книги: ') #нужно написать функцию для проверки валидности ISBN
+        book = LS.get(isbn)
+        if book == -1:
+            print('Книги с данным ISBN не существует')
+        else:
+            LS.change_status(isbn)
+            print('Статус книги успешно изменен!')
+    elif command == '4':
         isbn = input('Введите ISBN книги, которую хотите удалить: ') #нужно написать функцию для проверки валидности ISBN
         book = LS.get(isbn)
-        if book == -1 or book == None:
+        if book == -1:
             print('Книги с данным ISBN не существует')
         else:
             LS.remove(isbn)
             print('Книга успешно удалена!')
-    elif command == '4':
+    elif command == '5':
         new_book = get_new_book()
         LS.add(new_book)
         print('Книга успешно добавлена!')
-    elif command == '5':
+    elif command == '6':
         LS.save(CSV_FILE)
 
 def get_new_book():
     isbn = input('Введите ISBN новой книги: ') #нужно написать функцию для проверки валидности ISBN
-    name = input('Введите её название: ')
-    autor = input('Введите её автора: ')
-    year = input('Введите год её издания: ')
-    genre = input('Введите её жанр: ')
+    name = input('Введите название: ')
+    autor = input('Введите автора: ')
+    year = input('Введите год издания: ')
+    genre = input('Введите жанр: ')
     status = 'Available'
     return Book(isbn, name, autor, year, genre, status)
 
@@ -61,7 +70,7 @@ def get_input():
     return num
 
 def command_checker(num):
-    return num in '123456' and len(num) == 1
+    return num in '1234567' and len(num) == 1
 
 def main():
     is_launched = True
@@ -73,7 +82,7 @@ def main():
             print('Вам необходимо ввести одну цифру. Например: 1\n')
             show_information()
             command = get_input()
-        if command == '6':
+        if command == '7':
             is_launched = False
         else:
             do_action(command)

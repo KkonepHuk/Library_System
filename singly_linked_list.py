@@ -78,7 +78,7 @@ class SinglyLinkedList:
             if current.key == isbn:
                 return current.book
             current = current.next
-        return None
+        return -1
     
     #Односвязный список в дыумерный массив
     def to_arr(self):

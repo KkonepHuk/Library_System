@@ -60,14 +60,14 @@ class LibrarySystem:
                 print(f'{self.table[i].show()}')
     
     #Изменение статуса книги по ее "ISBN"
-    def change_status(self, isbn, is_availible):
+    def change_status(self, isbn):
         ind = self.hash_func(isbn)
         if self.table[ind] == None:
-            raise ValueError('Empty data')
-        elif is_availible:
-            self.table[ind].find(isbn).status = "в наличии"
+            return -1
+        elif self.table[ind].find(isbn).status == 'Available':
+            self.table[ind].find(isbn).status = 'Borrowed'
         else:
-            self.table[ind].find(isbn).status = "выдана"
+            self.table[ind].find(isbn).status = 'Available'
 
     #Преобразует Хэш-Таблицу(Library System) в двумернай массив
     def to_arr(self):
