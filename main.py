@@ -1,4 +1,5 @@
 from library_system import LibrarySystem
+from book import Book
 
 
 '''
@@ -37,8 +38,22 @@ def do_action(command):
         else:
             LS.remove(isbn)
             print('Книга успешно удалена!')
+    elif command == '4':
+        new_book = get_new_book()
+        LS.add(new_book)
+        print('Книга успешно добавлена!')
     elif command == '5':
         LS.save(CSV_FILE)
+
+def get_new_book():
+    isbn = input('Введите ISBN новой книги: ') #нужно написать функцию для проверки валидности ISBN
+    name = input('Введите её название: ')
+    autor = input('Введите её автора: ')
+    year = input('Введите год её издания: ')
+    genre = input('Введите её жанр: ')
+    status = 'Available'
+    return Book(isbn, name, autor, year, genre, status)
+
 
 def get_input():
     num = input().strip()
