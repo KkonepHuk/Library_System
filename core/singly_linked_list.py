@@ -1,4 +1,4 @@
-from book import Book
+from core.book import Book
 
 
 class Node:

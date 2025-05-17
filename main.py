@@ -1,6 +1,6 @@
 import os
-from library_system import LibrarySystem
-from book import Book
+from core.library_system import LibrarySystem
+from core.book import Book
 
 
 '''
@@ -72,7 +72,7 @@ def remove_book(isbn):
 def add_book():
     isbn = input('Введите ISBN новой книги: ')
     if is_isbn_valid(isbn):
-        new_book = get_new_book()
+        new_book = get_new_book(isbn)
         LS.add(new_book)
         print('Книга успешно добавлена!')
 

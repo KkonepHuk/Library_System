@@ -1,6 +1,6 @@
 import csv
-from book import Book
-from singly_linked_list import SinglyLinkedList
+from core.book import Book
+from core.singly_linked_list import SinglyLinkedList
 
 
 class LibrarySystem:
