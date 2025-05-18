@@ -11,10 +11,10 @@ class LibrarySystem:
 
     #Хэш-функция
     def hash_func(self, isbn):
-        '''
-        Придумать хорошую хэш - функцию
-        '''
-        return int(isbn[-1])
+        clean_isbn = "".join(c for c in isbn if c.isdigit() or c == "-")
+        selected = list(map(int, clean_isbn.split("-")))
+        hash_value = (selected[1] << 8) + selected[2] * 31 + selected[3] % 17 + selected[4]
+        return hash_value % self.size
     
     #Добавление книги
     def add(self, book):
