@@ -1,4 +1,4 @@
-from core.book import Book
+from book import Book
 
 
 class Node:
@@ -82,7 +82,7 @@ class SinglyLinkedList:
             current = current.next
         return -1
     
-    #Односвязный список в дыумерный массив
+    #Односвязный список в двумерный массив
     def list_to_arr(self):
         data = []
         current = self.head
@@ -91,8 +91,7 @@ class SinglyLinkedList:
             current = current.next
         return data
 
-    
-    
+
 if __name__ == '__main__':
     sll = SinglyLinkedList()
     book1 = Book('123456789012', 'Спокойной ночи малыши', 'Сергей Потапов', '2007', 'Хорор', 'в наличии')
@@ -112,6 +111,4 @@ if __name__ == '__main__':
     print(sll)
     print()
     print(sll.show())
-
-    
 

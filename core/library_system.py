@@ -1,6 +1,6 @@
 import csv
-from core.book import Book
-from core.singly_linked_list import SinglyLinkedList
+from book import Book
+from singly_linked_list import SinglyLinkedList
 
 
 class LibrarySystem:
@@ -128,12 +128,8 @@ class LibrarySystem:
                 self.add(new_book)
     
 
-
-            
-
-
 if __name__ == '__main__':
-    LS = LibrarySystem(10)
+    LS = LibrarySystem(100)
     '''
     Тест на работу цепочек при коллизиях
      ||
@@ -142,41 +138,33 @@ if __name__ == '__main__':
 
     '''
     sll = SinglyLinkedList()
-    collisia_book = Book('325', 'd', 'd', '4', 'd', 'd')
+    collisia_book = Book('325234234', 'd', 'd', '4', 'd', 'd')
     sll.add_to_start(collisia_book)
     LS.table[1] = sll
     '''
 
     
-    book1 = Book('123456789012', 'Спокойной ночи малыши', 'Сергей Потапов', '2007', 'Хорор', 'в наличии')
-    book2 = Book('929140219324', 'Малышарики', 'Ирина Петрова', '2011', 'Комедия', 'в наличии')
-    book3 = Book('342982381031', 'Путь к успеху', 'Николай Соболев', '2001', 'Триллер', 'выдана')
-    
-    '''
-    Придумал и написал Коля
-     ||
-     ||
-     \/
-    '''
+    book1 = Book('978-0-679-72232-8', 'Спокойной ночи малыши', 'Сергей Потапов', '2007', 'Хорор', 'в наличии')
+    book2 = Book('978-0-452-28423-4', 'Малышарики', 'Ирина Петрова', '2011', 'Комедия', 'в наличии')
+    book3 = Book('978-0-06-112008-4', 'Путь к успеху', 'Николай Соболев', '2001', 'Триллер', 'выдана')
 
-    book4 = Book('124141414441', 'Пятерочка','Николай Бабушкин','5269', 'Биография','в налачии')
+    book4 = Book('978-1-85326-000-1', 'Пятерочка','Николай Бабушкин','5269', 'Биография','в налачии')
     LS.add(book1)
     LS.add(book2)
     LS.add(book3)
     LS.show()
     print('-' * 150)
-    print(LS.get('123456789012'))
-    LS.remove('123456789012')
+    print(LS.get('978-0-679-72232-8'))
+    LS.remove('978-0-679-72232-8')
     LS.show()
     print('-' * 150)
-    LS.remove('342982381031')
+    LS.remove('978-0-452-28423-4')
     LS.show()
-    #print(LS.get('123456789012'))
+    #print(LS.get('978-0-679-72232-8'))
     print('-' * 150)
-    print(LS.get('929140219324'))
-    LS.change_status('929140219324', False)
-    print(LS.get('929140219324'))
+    print(LS.get('978-1-85326-000-1'))
+    LS.change_status('978-1-85326-000-1')
+    print(LS.get('978-1-85326-000-1'))
     print()
     LS.show()
-    print(LS.to_arr())
-
+    print(LS.library_to_arr())

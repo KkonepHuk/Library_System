@@ -1,4 +1,5 @@
 import csv
+import os
 
 
 class Book:
@@ -22,8 +23,10 @@ class Book:
     def from_csv(cls, arr):
         return cls(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5])
     
+
 if __name__ == '__main__':
-    with open('books.csv', 'r') as csvfile:
+    CSV_FILE = os.path.join('csv_files', 'books2.csv')
+    with open(CSV_FILE, 'r') as csvfile:
         reader = csv.reader(csvfile, delimiter=',')
         next(reader)
         for row in reader:
@@ -31,5 +34,4 @@ if __name__ == '__main__':
             print(book)
     print()
     book3 = Book('342982381031', 'Путь к успеху', 'Николай Соболев', '2001', 'Триллер', 'выдана')
-    print(book3.to_arr())
-
+    print(book3.book_to_arr())
