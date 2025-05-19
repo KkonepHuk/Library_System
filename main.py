@@ -118,6 +118,7 @@ def main():
     is_launched = True
 
     while is_launched:
+        #print(LS.size)
         show_information()
         command = get_input()
         while not(command_checker(command)):
@@ -132,7 +133,7 @@ def main():
 
 
 if __name__ == '__main__':
-    SIZE = 10 #Размер Хэш-Таблицы (Library System)
+    SIZE = 5 #Размер Хэш-Таблицы (Library System)
     CSV_FILE = os.path.join('csv_files', 'books2.csv') #CSV файл с базой данных книг
 
     LS = LibrarySystem(SIZE)

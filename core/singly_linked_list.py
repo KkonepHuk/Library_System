@@ -55,8 +55,10 @@ class SinglyLinkedList:
     #Удаление узла из начала
     def remove_from_start(self):
         if self.head:
+            removed = self.head
             self.head = self.head.next
             self.length -= 1
+            return removed
     
     
     #Наглядный вывод списка на экран для тестов
