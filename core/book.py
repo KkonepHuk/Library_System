@@ -15,7 +15,7 @@ class Book:
         s = f'[ISBN: {self.isbn}, Name: {self.name}, Autor: {self.autor}, Year of publication: {self.year}, Genre: {self.genre}, Status: {self.status}]'
         return s
     
-    def to_arr(self):
+    def book_to_arr(self):
         return [self.isbn, self.name, self.autor, self.year, self.genre, self.status]
     
     @classmethod

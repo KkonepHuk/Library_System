@@ -81,11 +81,11 @@ class SinglyLinkedList:
         return -1
     
     #Односвязный список в дыумерный массив
-    def to_arr(self):
+    def list_to_arr(self):
         data = []
         current = self.head
         while current:
-            data.append(current.book.to_arr())
+            data.append(current.book.book_to_arr())
             current = current.next
         return data
 

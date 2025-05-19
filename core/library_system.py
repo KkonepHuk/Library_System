@@ -70,16 +70,16 @@ class LibrarySystem:
             self.table[ind].find(isbn).status = 'Available'
 
     #Преобразует Хэш-Таблицу(Library System) в двумернай массив
-    def to_arr(self):
+    def library_to_arr(self):
         data = [['ISBN','Name','Author','Year','Genre','Status']]
         for i in range(self.size):
             if self.table[i] != None:
-                data.extend(self.table[i].to_arr())
+                data.extend(self.table[i].list_to_arr())
         return data
     
     #Сохранение Хэш-Таблицы(Library System) в csv файл
     def save(self, csv_file):
-        data = self.to_arr()
+        data = self.library_to_arr()
         with open(csv_file, 'w') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerows(data)

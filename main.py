@@ -133,7 +133,7 @@ def main():
 
 if __name__ == '__main__':
     SIZE = 10 #Размер Хэш-Таблицы (Library System)
-    CSV_FILE = os.path.join('csv_files', 'books.csv') #CSV файл с базой данных книг
+    CSV_FILE = os.path.join('csv_files', 'books2.csv') #CSV файл с базой данных книг
 
     LS = LibrarySystem(SIZE)
     LS.from_csv(CSV_FILE)
